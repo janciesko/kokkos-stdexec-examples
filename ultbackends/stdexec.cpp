@@ -4,7 +4,6 @@
 
 #ifdef KSEE_ENABLE_QTHREADS
 
-#include "argparsing.h"
 #include <qthread/qloop.h>
 #include <qthread/qthread.h>
 
@@ -247,8 +246,6 @@ struct qthreads_scheduler {
 int main(int argc, char **argv) {
   qthread_initialize();
 
-  CHECK_VERBOSE();
-
   stdexec::sender auto s =
       stdexec::schedule(qthreads::qthreads_scheduler{}) | stdexec::then([] {
         printf("Hello from qthreads in then-functor! id = %i\n", qthread_id());
@@ -257,6 +254,8 @@ int main(int argc, char **argv) {
         printf("Hello from qthreads bulk! i = %i, id = %i\n", i, qthread_id());
       });
   stdexec::sync_wait(std::move(s));
+
+  qthread_finalize();
 
   return 0;
 }
