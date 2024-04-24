@@ -21,4 +21,7 @@ check_cxx_compiler_flag(-Wformat=2 CXX_HAS_WFORMAT2)
 check_cxx_compiler_flag(-Wmissing-include-dirs CXX_HAS_WMISSING_INCLUDE_DIRS)
 check_cxx_compiler_flag(-Wno-gnu-zero-variadic-macro-arguments CXX_HAS_NO_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS)
 
-add_compile_options(-Wall -Wextra -pedantic -Werror -O3)
+add_compile_options(-Wall -pedantic -Werror -O3)
+
+#Enable for extra 
+#add_compile_options(-Wextra)
